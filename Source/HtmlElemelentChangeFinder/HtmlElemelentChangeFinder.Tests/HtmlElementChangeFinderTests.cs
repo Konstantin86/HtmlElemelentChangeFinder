@@ -1,10 +1,6 @@
 ﻿using HtmlElemelentChangeFinder.Core;
 using HtmlElemelentChangeFinder.Core.Abstraction;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -23,7 +19,18 @@ namespace HtmlElemelentChangeFinder.Tests
             var testDiffHtml4Path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TestData\\sample-4-the-mash.html");
 
             IHtmlElementChangeFinder finder = new HtmlElementChangeFinder();
-            var result1 = finder.GetChangedElementPath(testInputHtmlPath, testDiffHtml1Path, "make-everything-ok-button");
+
+            var resultForSample1 = finder.GetChangedElement(testInputHtmlPath, testDiffHtml1Path, "make-everything-ok-button");
+            Assert.AreEqual("/html[1]/body[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[2]/a[2]", resultForSample1.XPath);
+
+            var resultForSample2 = finder.GetChangedElement(testInputHtmlPath, testDiffHtml2Path, "make-everything-ok-button");
+            Assert.AreEqual("/html[1]/body[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[2]/div[1]/a[1]", resultForSample2.XPath);
+
+            var resultForSample3 = finder.GetChangedElement(testInputHtmlPath, testDiffHtml3Path, "make-everything-ok-button");
+            Assert.AreEqual("/html[1]/body[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[3]/a[1]", resultForSample3.XPath);
+
+            var resultForSample4 = finder.GetChangedElement(testInputHtmlPath, testDiffHtml4Path, "make-everything-ok-button");
+            Assert.AreEqual("/html[1]/body[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[3]/a[1]", resultForSample4.XPath);
         }
     }
 }

@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using HtmlElemelentChangeFinder.Core.Model;
 
 namespace HtmlElemelentChangeFinder.Core.Abstraction
 {
     public interface IHtmlElementChangeFinder
     {
-        string GetChangedElementPath(string originalHtmlPath, string diffHtmlPath, string elementId);
+        ChangedHtmlElementResult GetChangedElement(string originalHtmlPath, string diffHtmlPath, string elementId);
     }
 }

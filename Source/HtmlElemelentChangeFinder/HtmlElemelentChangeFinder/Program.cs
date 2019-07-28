@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using HtmlElemelentChangeFinder.Core;
+using HtmlElemelentChangeFinder.Core.Abstraction;
+using System;
 
 namespace HtmlElemelentChangeFinder
 {
@@ -10,15 +8,20 @@ namespace HtmlElemelentChangeFinder
     {
         static void Main(string[] args)
         {
-            if (args.Length < 2)
+            if (args.Length < 3)
             {
                 throw new Exception("Required arguments aren't provided");
             }
 
             string inputHtml = args[0];
             string diffHtml = args[1];
+            string inputElementId = args[2];
 
-            
+            IHtmlElementChangeFinder finder = new HtmlElementChangeFinder();
+
+            var result = finder.GetChangedElement(inputHtml, diffHtml, inputElementId);
+            Console.WriteLine(result);
+            Console.ReadKey();
         }
     }
 }
